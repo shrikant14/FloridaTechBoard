@@ -40,6 +40,6 @@ public class LaunchActivity extends AppCompatActivity {
                 in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(in);
             }
-        }, 10000);
+        }, 5000);
     }
 }
