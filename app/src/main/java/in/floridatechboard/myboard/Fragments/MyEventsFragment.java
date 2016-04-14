@@ -71,11 +71,11 @@ public class MyEventsFragment extends Fragment {
 
             Fragment fragment = null;
             if (position == 0) {
-                fragment = new AboutAppFragment();
+                fragment = new MyEventsUpcoming();
             } else if (position == 1) {
-                fragment = new AboutAppFragment();
+                fragment = new MyEventsSeminar();
             }else if (position == 2) {
-                fragment = new AboutAppFragment();
+                fragment = new MyEventsWorkshops();
             }
 
             return fragment;

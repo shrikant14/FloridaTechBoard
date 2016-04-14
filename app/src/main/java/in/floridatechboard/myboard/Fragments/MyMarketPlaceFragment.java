@@ -72,11 +72,11 @@ public class MyMarketPlaceFragment extends Fragment {
 
             Fragment fragment = null;
             if (position == 0) {
-                fragment = new AboutAppFragment();
+                fragment = new MyMarketPlaceFragSelling();
             } else if (position == 1) {
-                fragment = new AboutAppFragment();
+                fragment = new MyMarketPlaceFragBuying();
             }else if (position == 2) {
-                fragment = new AboutAppFragment();
+                fragment = new MyMarketPlaceFragServices();
             }
 
             return fragment;

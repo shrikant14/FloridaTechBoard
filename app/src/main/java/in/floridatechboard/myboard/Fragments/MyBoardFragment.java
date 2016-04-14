@@ -71,9 +71,9 @@ public class MyBoardFragment extends Fragment {
 
             Fragment fragment = null;
             if (position == 0) {
-                fragment = new AboutAppFragment();
+                fragment = new MyBoardOfficial();
             } else if (position == 1) {
-                fragment = new AboutAppFragment();
+                fragment = new MyBoardUnofficial();
             }
 
             return fragment;
