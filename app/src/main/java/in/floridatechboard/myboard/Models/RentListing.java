@@ -14,6 +14,7 @@ public class RentListing implements Parcelable {
     private String listingStartedDate;
     private String listingPostingDate;
     private String listingPersonName;
+    private String listingDesc;
 
     public RentListing(int listingId, String listingPersonName, String listingPostingDate, String listingStartedDate, String listingHeading, String listingCost) {
         this.listingId = listingId;
@@ -22,6 +23,23 @@ public class RentListing implements Parcelable {
         this.listingStartedDate = listingStartedDate;
         this.listingHeading = listingHeading;
         this.listingCost = listingCost;
+    }
+    public RentListing(int listingId, String listingPersonName, String listingPostingDate, String listingStartedDate, String listingHeading, String listingCost,String listingDesc) {
+        this.listingId = listingId;
+        this.listingPersonName = listingPersonName;
+        this.listingPostingDate = listingPostingDate;
+        this.listingStartedDate = listingStartedDate;
+        this.listingHeading = listingHeading;
+        this.listingCost = listingCost;
+        this.listingDesc=listingDesc;
+    }
+
+    public String getListingDesc() {
+        return listingDesc;
+    }
+
+    public void setListingDesc(String listingDesc) {
+        this.listingDesc = listingDesc;
     }
 
     public String getListingPersonName() {

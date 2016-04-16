@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="146dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/button_anim"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="110dp"
+        android:background="@drawable/floridatech"
+        android:layout_gravity="center"
+        android:id="@+id/galleryIcon" />
+
+    <TextView
+        android:id="@+id/galleryTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text="Event 1 Gallery"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#795548"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:textStyle="bold" />
+
+
+</LinearLayout>
+
+

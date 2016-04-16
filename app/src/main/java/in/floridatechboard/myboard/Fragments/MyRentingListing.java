@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import in.floridatechboard.myboard.Activities.AddContentActivity;
 import in.floridatechboard.myboard.Adapters.RecyclerViewAdapter;
+import in.floridatechboard.myboard.Adapters.ViewAdapterMarketplace;
 import in.floridatechboard.myboard.Models.RentListing;
 import in.floridatechboard.myboard.R;
 
@@ -54,7 +55,7 @@ public class MyRentingListing extends Fragment {
 
         rent_list = createDumyData();
         // specify an adapter (see also next example)
-        mAdapter = new RecyclerViewAdapter(rent_list, getActivity());
+        mAdapter = new ViewAdapterMarketplace(rent_list, getActivity(), 1);
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setShadow(false);
@@ -71,7 +72,7 @@ public class MyRentingListing extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(getActivity(), AddContentActivity.class);
+                Intent intent = new Intent(getActivity(), AddContentActivity.class);
                 //intent.putExtra("val","Suggest a place");
                 startActivity(intent);
             }
@@ -82,16 +83,18 @@ public class MyRentingListing extends Fragment {
 
     public ArrayList<RentListing> createDumyData() {
         ArrayList<RentListing> p_list = new ArrayList<RentListing>();
-        int[] listingId={1,2};
-        String[] listingHeading={"2BHK for rent", "1 BHK for rent in landmark"};
-        String[] listingCost={"$230","$300"};
-        String[] listingStartedDate={"2nd April","5th May"};
-        String[] listingPostingDate={"13th April","13th April"};
-        String[] listingPersonName={"Name1","Name2"};
+        int[] listingId = {1, 2};
+        String[] listingHeading = {"Room for rent for summer", "1 BHK for rent in landmark"};
+        String[] listingCost = {"$ 550", "$ 300"};
+        String[] listingStartedDate = {"Summer", "5th May"};
+        String[] listingPostingDate = {"13th April", "13th April"};
+        String[] listingPersonName = {"Phone Khant", "Chan"};
+        String[] listingDetails = {"I will be away during the summer and am renting out my room. The rent is 550 including electricity and 75Mbps internet. The apartment has a washer and a drier, and a tv + ps4. Includes personal bathroom, and furnished Bedroom with bed and study table. The apartment will have one other person(male). Leave a text to 917-943-4525 or reply to this email if interested.", "I am looking for a roommate to move in with me. Email me back if interested."};
 
 
         for (int i = 0; i < listingId.length; i++) {
-            RentListing p = new RentListing(listingId[i], listingHeading[i], listingCost[i], listingStartedDate[i], listingPostingDate[i], listingPersonName[i]);
+            RentListing p = new RentListing(listingId[i], listingPersonName[i], listingPostingDate[i], listingStartedDate[i], listingHeading[i], listingCost[i], listingDetails[i]);
+
             p_list.add(p);
             p_list.add(p);
             p_list.add(p);

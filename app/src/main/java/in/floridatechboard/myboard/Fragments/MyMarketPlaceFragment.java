@@ -51,9 +51,9 @@ public class MyMarketPlaceFragment extends Fragment {
 
         mTabs.setCustomTabView(R.layout.custom_tab_view, R.id.tabText);
         mTabs.setDistributeEvenly(true);
-        mTabs.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        mTabs.setBackgroundColor(getResources().getColor(R.color.colorPrimaryNotify));
 
-        mTabs.setSelectedIndicatorColors(getResources().getColor(R.color.colorAccent));
+        mTabs.setSelectedIndicatorColors(getResources().getColor(R.color.colorAccentNotify));
         mTabs.setViewPager(mPager);
     }
 

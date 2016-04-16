@@ -30,8 +30,27 @@
         <activity
             android:name=".Activities.LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".Activities.SettingsActivity" />
+        <activity android:name=".Activities.SettingsActivity"
+            android:label="@string/title_activity_settings">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.HomeActivity" />
+
+        </activity>
         <activity android:name=".Activities.AddContentActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.HomeActivity" />
+        </activity>
+        <activity android:name=".Activities.AboutActivity"
+            android:label="@string/title_activity_about">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.HomeActivity" />
+        </activity>
+        <activity android:name=".Activities.MyProfileActivity"
+            android:label="@string/title_activity_profile">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.HomeActivity" />

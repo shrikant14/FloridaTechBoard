@@ -4,8 +4,13 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="colorPrimaryNotify">#F44336</color>
+    <color name="colorAccentNotify">#B71C1C</color>
 
     <color name="primary">#3f51b5</color>
     <color name="primary_pressed">#303f9f</color>
     <color name="ripple">#F06292</color>
+
+    <color name="colorPrimaryOther">#FF5722</color>
+    <color name="colorAccentOther">#FF5722</color>
 </resources>

@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import in.floridatechboard.myboard.Models.EventListing;
 import in.floridatechboard.myboard.Models.RentListing;
 import in.floridatechboard.myboard.R;
 

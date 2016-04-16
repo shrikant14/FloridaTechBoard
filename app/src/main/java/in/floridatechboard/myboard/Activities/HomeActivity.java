@@ -1,6 +1,8 @@
 package in.floridatechboard.myboard.Activities;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -41,6 +43,7 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
         Fragment fragment = new MyBoardFragment();
         if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -78,6 +81,10 @@ public class HomeActivity extends AppCompatActivity
             Intent intent=new Intent(HomeActivity.this,SettingsActivity.class);
             startActivity(intent);
             return true;
+        }else if (id == R.id.action_about) {
+            Intent intent=new Intent(HomeActivity.this,AboutActivity.class);
+            startActivity(intent);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -92,24 +99,32 @@ public class HomeActivity extends AppCompatActivity
 
         if (id == R.id.nav_board) {
             // Handle the camera action
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
             getSupportActionBar().setTitle(item.getTitle());
             fragment = new MyBoardFragment();
         } else if (id == R.id.nav_notify) {
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryNotify)));
             getSupportActionBar().setTitle(item.getTitle());
             fragment = new MyNotificationFragment();
         } else if (id == R.id.nav_events) {
-
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
             getSupportActionBar().setTitle(item.getTitle());
             fragment = new MyEventsFragment();
         } else if (id == R.id.nav_market) {
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryNotify)));
             getSupportActionBar().setTitle(item.getTitle());
             fragment = new MyMarketPlaceFragment();
         } else if (id == R.id.nav_rent) {
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
             getSupportActionBar().setTitle(item.getTitle());
             fragment = new MyRentingFragment();
         } else if (id == R.id.nav_gallery) {
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryNotify)));
             getSupportActionBar().setTitle(item.getTitle());
             fragment = new MyGalleryFragment();
+        }else if (id == R.id.nav_profile) {
+            Intent intent=new Intent(HomeActivity.this,MyProfileActivity.class);
+            startActivity(intent);
         }
 
         if (fragment != null) {

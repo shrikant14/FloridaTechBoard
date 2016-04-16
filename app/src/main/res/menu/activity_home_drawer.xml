@@ -4,27 +4,27 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_board"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@mipmap/ic_dashboard_black_24dp"
             android:title="Board" />
         <item
             android:id="@+id/nav_notify"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@mipmap/ic_notifications_black_24dp"
             android:title="Notifications" />
         <item
             android:id="@+id/nav_events"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@mipmap/ic_event_black_24dp"
             android:title="Events" />
         <item
             android:id="@+id/nav_market"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@mipmap/ic_store_black_24dp"
             android:title="Market place" />
         <item
             android:id="@+id/nav_rent"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@mipmap/ic_place_black_24dp"
             android:title="Renting" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@mipmap/ic_photo_library_black_24dp"
             android:title="Gallery" />
     </group>
 
@@ -32,9 +32,9 @@
         <menu>
 
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_profile"
+                android:icon="@mipmap/ic_perm_identity_black_24dp"
+                android:title="My Profile" />
 
 
         </menu>

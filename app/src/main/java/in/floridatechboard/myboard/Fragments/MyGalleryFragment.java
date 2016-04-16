@@ -4,6 +4,7 @@ package in.floridatechboard.myboard.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 
 import in.floridatechboard.myboard.Activities.AddContentActivity;
 import in.floridatechboard.myboard.Adapters.RecyclerViewAdapter;
+import in.floridatechboard.myboard.Adapters.ViewAdapterGallery;
 import in.floridatechboard.myboard.Models.RentListing;
 import in.floridatechboard.myboard.R;
 
@@ -47,11 +49,11 @@ public class MyGalleryFragment extends Fragment {
         setHasOptionsMenu(true);
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
         rent_list = createDumyData();
         // specify an adapter (see also next example)
-        mAdapter = new RecyclerViewAdapter(rent_list, getActivity());
+        mAdapter = new ViewAdapterGallery(rent_list, getActivity());
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setShadow(false);
@@ -88,6 +90,9 @@ public class MyGalleryFragment extends Fragment {
 
         for (int i = 0; i < listingId.length; i++) {
             RentListing p = new RentListing(listingId[i], listingHeading[i], listingCost[i], listingStartedDate[i], listingPostingDate[i], listingPersonName[i]);
+            p_list.add(p);
+            p_list.add(p);
+            p_list.add(p);
             p_list.add(p);
             p_list.add(p);
             p_list.add(p);

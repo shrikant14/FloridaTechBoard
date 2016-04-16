@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.melnykov.fab.FloatingActionButton;
 import com.twotoasters.jazzylistview.effects.SlideInEffect;
 import com.twotoasters.jazzylistview.recyclerview.JazzyRecyclerViewScrollListener;
@@ -18,8 +19,11 @@ import java.util.ArrayList;
 
 import in.floridatechboard.myboard.Activities.AddContentActivity;
 import in.floridatechboard.myboard.Adapters.RecyclerViewAdapter;
+import in.floridatechboard.myboard.Adapters.ViewAdapterEvents;
+import in.floridatechboard.myboard.Models.Events;
 import in.floridatechboard.myboard.Models.RentListing;
 import in.floridatechboard.myboard.R;
+import in.floridatechboard.myboard.Utils.RecyclerItemClickListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +33,7 @@ public class MyEventsUpcoming extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    ArrayList<RentListing> rent_list;
+    ArrayList<Events> e_list;
 
     public MyEventsUpcoming() {
         // Required empty public constructor
@@ -50,9 +54,9 @@ public class MyEventsUpcoming extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        rent_list = createDumyData();
+        e_list = createDumyData();
         // specify an adapter (see also next example)
-        mAdapter = new RecyclerViewAdapter(rent_list, getActivity());
+        mAdapter = new ViewAdapterEvents(e_list, getActivity());
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setShadow(false);
@@ -64,6 +68,22 @@ public class MyEventsUpcoming extends Fragment {
 
         mRecyclerView.setOnScrollListener(jazzyScrollListener);
         mRecyclerView.setAdapter(mAdapter);
+
+        mRecyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        // do whateve
+                        new MaterialDialog.Builder(getActivity())
+                                .title(e_list.get(position).getEventTitle())
+                                .content(e_list.get(position).getEventDetails())
+                                .positiveText("CLOSE")
+                                .show();
+
+
+                    }
+                })
+        );
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,23 +97,25 @@ public class MyEventsUpcoming extends Fragment {
         return view;
     }
 
-    public ArrayList<RentListing> createDumyData() {
-        ArrayList<RentListing> p_list = new ArrayList<RentListing>();
-        int[] listingId={1,2};
-        String[] listingHeading={"2BHK for rent", "1 BHK for rent in landmark"};
-        String[] listingCost={"$230","$300"};
-        String[] listingStartedDate={"2nd April","5th May"};
-        String[] listingPostingDate={"13th April","13th April"};
-        String[] listingPersonName={"Name1","Name2"};
+    public ArrayList<Events> createDumyData() {
+        ArrayList<Events> e_list = new ArrayList<Events>();
+        int[] eventId={1,2};
+        String[] eventTitle={"Event Title 1", "Event Title 2"};
+        String[] eventDate={"2nd April","5th April"};
+        String[] eventTime={"2:00 pm","10:30 am"};
+        String[] eventSender={"abc@fit.edy","def@my.fit.edu"};
+        String[] eventLoc={"Olin Engineering 210","Library 214"};
+        String[] eventDetails={"asdj ashdkjsd js dhas dh shdsah  dhsad h","asd has dhsdgvsag hdsgsag dgsfd gsf gsadgsfdg  sgdgas dgasdsd sg d"};
+        String[] eventHashTags={"#cs2017, #programing", "#presentations, #everyone"};
 
 
-        for (int i = 0; i < listingId.length; i++) {
-            RentListing p = new RentListing(listingId[i], listingHeading[i], listingCost[i], listingStartedDate[i], listingPostingDate[i], listingPersonName[i]);
-            p_list.add(p);
-            p_list.add(p);
-            p_list.add(p);
+        for (int i = 0; i < eventId.length; i++) {
+            Events p = new Events(eventId[i],eventSender[i],  eventDate[i], eventTime[i], eventLoc[i], eventDetails[i], eventHashTags[i],eventTitle[i]);
+            e_list.add(p);
+            e_list.add(p);
+            e_list.add(p);
         }
-        return p_list;
+        return e_list;
 
     }
 

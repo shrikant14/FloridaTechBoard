@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import in.floridatechboard.myboard.Activities.AddContentActivity;
 import in.floridatechboard.myboard.Adapters.RecyclerViewAdapter;
+import in.floridatechboard.myboard.Adapters.ViewAdapterMarketplace;
 import in.floridatechboard.myboard.Models.RentListing;
 import in.floridatechboard.myboard.R;
 
@@ -53,7 +54,7 @@ public class MyRentingPosting extends Fragment {
 
         rent_list = createDumyData();
         // specify an adapter (see also next example)
-        mAdapter = new RecyclerViewAdapter(rent_list, getActivity());
+        mAdapter = new ViewAdapterMarketplace(rent_list, getActivity(),5);
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setShadow(false);

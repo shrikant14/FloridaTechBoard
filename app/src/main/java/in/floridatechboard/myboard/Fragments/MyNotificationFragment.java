@@ -4,8 +4,13 @@ package in.floridatechboard.myboard.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,16 +25,13 @@ import in.floridatechboard.myboard.Activities.AddContentActivity;
 import in.floridatechboard.myboard.Adapters.RecyclerViewAdapter;
 import in.floridatechboard.myboard.Models.RentListing;
 import in.floridatechboard.myboard.R;
+import in.floridatechboard.myboard.Utils.SlidingTabLayout;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MyNotificationFragment extends Fragment {
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    ArrayList<RentListing> rent_list;
 
     public MyNotificationFragment() {
         // Required empty public constructor
@@ -41,60 +43,88 @@ public class MyNotificationFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_my_notification, container, false);
         // Inflate the layout for this fragment
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
-        setHasOptionsMenu(true);
-        // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        rent_list = createDumyData();
-        // specify an adapter (see also next example)
-        mAdapter = new RecyclerViewAdapter(rent_list, getActivity());
-
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
-        fab.setShadow(false);
-        fab.attachToRecyclerView(mRecyclerView);
-
-        JazzyRecyclerViewScrollListener jazzyScrollListener;
-        jazzyScrollListener = new JazzyRecyclerViewScrollListener();
-        jazzyScrollListener.setTransitionEffect(new SlideInEffect());
-
-        mRecyclerView.setOnScrollListener(jazzyScrollListener);
-        mRecyclerView.setAdapter(mAdapter);
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent =new Intent(getActivity(), AddContentActivity.class);
-                //intent.putExtra("val","Suggest a place");
-                startActivity(intent);
-            }
-        });
-
         return view;
     }
 
-    public ArrayList<RentListing> createDumyData() {
-        ArrayList<RentListing> p_list = new ArrayList<RentListing>();
-        int[] listingId={1,2};
-        String[] listingHeading={"2BHK for rent", "1 BHK for rent in landmark"};
-        String[] listingCost={"$230","$300"};
-        String[] listingStartedDate={"2nd April","5th May"};
-        String[] listingPostingDate={"13th April","13th April"};
-        String[] listingPersonName={"Name1","Name2"};
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
 
-        for (int i = 0; i < listingId.length; i++) {
-            RentListing p = new RentListing(listingId[i], listingHeading[i], listingCost[i], listingStartedDate[i], listingPostingDate[i], listingPersonName[i]);
-            p_list.add(p);
-            p_list.add(p);
-            p_list.add(p);
+        Log.e("frag", "onViewCreated");
+        ViewPager mPager;
+        SlidingTabLayout mTabs;
+        MyPagerAdapter mAdapter;
+
+
+        mPager = (ViewPager) view.findViewById(R.id.pager);
+        mAdapter = new MyPagerAdapter(getChildFragmentManager());
+
+        mPager.setAdapter(mAdapter);
+        mTabs = (SlidingTabLayout) view.findViewById(R.id.tabs);
+
+        mTabs.setCustomTabView(R.layout.custom_tab_view, R.id.tabText);
+        mTabs.setDistributeEvenly(true);
+        mTabs.setBackgroundColor(getResources().getColor(R.color.colorPrimaryNotify));
+
+        mTabs.setSelectedIndicatorColors(getResources().getColor(R.color.colorAccentNotify));
+        mTabs.setViewPager(mPager);
+    }
+
+    class MyPagerAdapter extends FragmentPagerAdapter {
+
+
+        String[] tabs;
+
+        public MyPagerAdapter(FragmentManager fm) {
+            super(fm);
+            tabs = getResources().getStringArray(R.array.tab_my_notifications);
         }
-        return p_list;
 
+        @Override
+        public Fragment getItem(int position) {
+
+            Fragment fragment = null;
+            if (position == 0) {
+                fragment = new MyNotificationsAcademics();
+            } else if (position == 1) {
+                fragment = new MyNotificationsSports();
+            }else if (position == 2) {
+                fragment = new MyNotificationsGeneral();
+            }
+
+            return fragment;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return tabs[position];
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+        @Override
+        public void notifyDataSetChanged() {
+
+            super.notifyDataSetChanged();
+
+            Log.d("notify", "changed");
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            // TODO Auto-generated method stub
+
+            FragmentManager manager = ((Fragment) object).getFragmentManager();
+            FragmentTransaction trans = manager.beginTransaction();
+            trans.remove((Fragment) object);
+            trans.commit();
+
+            super.destroyItem(container, position, object);
+        }
     }
 
 }
