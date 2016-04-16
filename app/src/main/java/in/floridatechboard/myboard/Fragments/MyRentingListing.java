@@ -11,11 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.melnykov.fab.FloatingActionButton;
 import com.twotoasters.jazzylistview.effects.SlideInEffect;
 import com.twotoasters.jazzylistview.recyclerview.JazzyRecyclerViewScrollListener;
 
 import java.util.ArrayList;
 
+import in.floridatechboard.myboard.Activities.AddContentActivity;
 import in.floridatechboard.myboard.Adapters.RecyclerViewAdapter;
 import in.floridatechboard.myboard.Models.RentListing;
 import in.floridatechboard.myboard.R;
@@ -54,12 +56,26 @@ public class MyRentingListing extends Fragment {
         // specify an adapter (see also next example)
         mAdapter = new RecyclerViewAdapter(rent_list, getActivity());
 
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab.setShadow(false);
+        fab.attachToRecyclerView(mRecyclerView);
+
+
         JazzyRecyclerViewScrollListener jazzyScrollListener;
         jazzyScrollListener = new JazzyRecyclerViewScrollListener();
         jazzyScrollListener.setTransitionEffect(new SlideInEffect());
 
         mRecyclerView.setOnScrollListener(jazzyScrollListener);
         mRecyclerView.setAdapter(mAdapter);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(getActivity(), AddContentActivity.class);
+                //intent.putExtra("val","Suggest a place");
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

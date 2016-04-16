@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="io.myprojectx.travellerguide.Activities.PlacesDetailActivity">
+    <item
+        android:id="@+id/action_filter"
+        android:icon="@mipmap/ic_action_ic_filter"
+        android:title="filter"
+        app:showAsAction="ifRoom" />
+
+</menu>
